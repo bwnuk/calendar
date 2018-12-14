@@ -2,9 +2,17 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:animateLayoutChanges="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        />
 
     <com.github.sundeepk.compactcalendarview.CompactCalendarView
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -15,10 +23,10 @@
         android:layout_height="250dp"
         app:compactCalendarTargetHeight="250dp"
         app:compactCalendarTextSize="12sp"
-        app:compactCalendarBackgroundColor="#ffe95451"
+        app:compactCalendarBackgroundColor="@color/colorPrimary"
         app:compactCalendarTextColor="#fff"
-        app:compactCalendarCurrentSelectedDayBackgroundColor="#E57373"
-        app:compactCalendarCurrentDayBackgroundColor="#B71C1C"
+        app:compactCalendarCurrentSelectedDayBackgroundColor="@color/teal"
+        app:compactCalendarCurrentDayBackgroundColor="@color/colorPrimaryDark"
         app:compactCalendarMultiEventIndicatorColor="#fff"
         />
 
