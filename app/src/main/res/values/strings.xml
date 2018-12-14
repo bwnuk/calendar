@@ -3,4 +3,9 @@
     <string name="welcome">Welcome!</string>
     <string name="menu_add">Add</string>
     <string name="add_activity">Add Event</string>
+    <string name="pick_date">Select Date</string>
+    <string name="date_event">Date of the event:</string>
+    <string name="title_event">Event title:</string>
+    <string name="submit">ADD</string>
+    <string name="title">Title</string>
 </resources>
