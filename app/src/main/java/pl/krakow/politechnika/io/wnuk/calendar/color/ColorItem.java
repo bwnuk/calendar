@@ -1,4 +1,4 @@
-package pl.krakow.politechnika.io.wnuk.calendar;
+package pl.krakow.politechnika.io.wnuk.calendar.color;
 
 public class ColorItem {
     private String colorName;

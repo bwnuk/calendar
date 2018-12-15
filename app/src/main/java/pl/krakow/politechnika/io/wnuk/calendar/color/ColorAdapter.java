@@ -1,4 +1,4 @@
-package pl.krakow.politechnika.io.wnuk.calendar;
+package pl.krakow.politechnika.io.wnuk.calendar.color;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import pl.krakow.politechnika.io.wnuk.calendar.R;
 
 public class ColorAdapter extends ArrayAdapter {
     public ColorAdapter(Context context, ArrayList<ColorItem> colorList){

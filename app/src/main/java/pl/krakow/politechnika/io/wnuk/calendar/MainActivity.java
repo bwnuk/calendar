@@ -49,8 +49,9 @@ public class MainActivity extends AppCompatActivity {
         eventsListView = (ListView) findViewById(R.id.lvEvents);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
-        final List<String> mutableEvents = new ArrayList<>();
-        final ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mutableEvents);
+        final ArrayList<Event> mutableEvents = new ArrayList<>();
+        //final ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mutableEvents);
+        final ArrayAdapter adapter = new EventsAdapter(this, mutableEvents);
         eventsListView.setAdapter(adapter);
 
         setSupportActionBar(toolbar);
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 if (eventsList != null) {
                     mutableEvents.clear();
                     for (Event booking : eventsList) {
-                        mutableEvents.add((String) booking.getData());
+                        mutableEvents.add(booking);
                     }
                     adapter.notifyDataSetChanged();
                 }
