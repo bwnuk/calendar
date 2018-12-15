@@ -1,6 +1,8 @@
 package pl.krakow.politechnika.io.wnuk.calendar;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
@@ -43,10 +45,19 @@ public class AddEventActivity extends AppCompatActivity {
 
         titleInput = (EditText) findViewById(R.id.etTitle);
         submitButton = (Button) findViewById(R.id.bSubmit);
+
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Extract data from UI
+                title = titleInput.getText().toString();
 
+
+                //Pass data back
+                Intent intent = new Intent();
+                intent.putExtra("message", title);
+                setResult(Activity.RESULT_OK, intent);
+                finish();
             }
         });
 
@@ -81,4 +92,5 @@ public class AddEventActivity extends AppCompatActivity {
             }
         };
     }
+
 }

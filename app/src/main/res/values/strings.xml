@@ -8,4 +8,6 @@
     <string name="title_event">Event title:</string>
     <string name="submit">ADD</string>
     <string name="title">Title</string>
+    <string name="button_left">SCROLL LEFT</string>
+    <string name="button_right">SCROLL RIGHT</string>
 </resources>
