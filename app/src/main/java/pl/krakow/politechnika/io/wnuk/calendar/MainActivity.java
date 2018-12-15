@@ -63,35 +63,17 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar.setTitle(dateFormatForMonth.format(compactCalendarView.getFirstDayOfCurrentMonth()));
 
-        String myDate = "2018/12/16 18:10:45";
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date date = null;
-        try {
-            date = sdf.parse(myDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        long millis = date.getTime();
-        // Add event 1 on Sun, 07 Jun 2015 18:20:51 GMT
-        Event ev1 = new Event(Color.RED, millis, "Some extra data that I want to store.");
-        compactCalendarView.addEvent(ev1);
-
-        // Added event 2 GMT: Sun, 07 Jun 2015 19:10:51 GMT
-        Event ev2 = new Event(Color.GREEN, 1433704251000L);
-        compactCalendarView.addEvent(ev2);
-
-        // Query for events on Sun, 07 Jun 2015 GMT.
-        // Time is not relevant when querying for events, since events are returned by day.
-        // So you can pass in any arbitary DateTime and you will receive all events for that day.
-        List<Event> events = compactCalendarView.getEvents(1433701251000L); // can also take a Date object
-
-        // events has size 2 with the 2 events inserted previously
-
-        // define a listener to receive callbacks when certain events happen.
         compactCalendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
             public void onDayClick(Date dateClicked) {
-                List<Event> events = compactCalendarView.getEvents(dateClicked);
+                List<Event> eventsList = compactCalendarView.getEvents(dateClicked);
+                if (eventsList != null) {
+                    mutableEvents.clear();
+                    for (Event booking : eventsList) {
+                        mutableEvents.add((String) booking.getData());
+                    }
+                    adapter.notifyDataSetChanged();
+                }
             }
 
             @Override
@@ -100,6 +82,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /*
+        Button to scroll to next or previous month
+         */
         showNextMonthButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
 
     /*
     Menu
@@ -162,10 +146,28 @@ public class MainActivity extends AppCompatActivity {
                 if(resultCode == Activity.RESULT_OK){
                     // Get message
                     assert data != null;
-                    String message = data.getStringExtra("message");
+                    String title = data.getStringExtra("title");
+                    String date = data.getStringExtra("date");
+                    addEvent(title, date);
                 } else{
                     Log.i("My app", "Activity canceled");
                 }
         }
+    }
+
+    public void addEvent(String title, String sDate){
+        String myDate = sDate + " 10:00:00";
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = null;
+        try {
+            date = sdf.parse(myDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        long millis = date.getTime();
+
+        Event ev1 = new Event(Color.RED, millis, title +" at: " + sDate);
+        compactCalendarView.addEvent(ev1);
     }
 }

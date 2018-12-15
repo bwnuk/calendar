@@ -24,6 +24,7 @@ public class AddEventActivity extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     private String title;
     private String date;
+    private String dateTextView;
     private EditText titleInput;
     private Button submitButton;
     private boolean created = false;
@@ -46,16 +47,20 @@ public class AddEventActivity extends AppCompatActivity {
         titleInput = (EditText) findViewById(R.id.etTitle);
         submitButton = (Button) findViewById(R.id.bSubmit);
 
+
+        /**
+         * Return data from activity
+         */
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Extract data from UI
                 title = titleInput.getText().toString();
 
-
                 //Pass data back
                 Intent intent = new Intent();
-                intent.putExtra("message", title);
+                intent.putExtra("title", title);
+                intent.putExtra("date", date);
                 setResult(Activity.RESULT_OK, intent);
                 finish();
             }
@@ -87,8 +92,9 @@ public class AddEventActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month += 1;
-                date = day + "." + month + "." + year;
-                mDisplayDate.setText(date);
+                date = year + "/" + month + "/" + day;
+                dateTextView = day + "." + month + "." + year;
+                mDisplayDate.setText(dateTextView);
             }
         };
     }
