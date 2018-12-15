@@ -99,7 +99,7 @@ public class AddEventActivity extends AppCompatActivity {
         colorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                color = adapterView.getItemAtPosition(i).toString();
+                color = ((ColorItem)adapterView.getItemAtPosition(i)).getColorName();
             }
 
             @Override

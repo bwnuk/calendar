@@ -44,21 +44,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final List<String> mutableEvents = new ArrayList<>();
+        showPreviousMonthButton = (Button) findViewById(R.id.bLeft);
+        showNextMonthButton = (Button) findViewById(R.id.bRight);
         eventsListView = (ListView) findViewById(R.id.lvEvents);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        final List<String> mutableEvents = new ArrayList<>();
         final ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mutableEvents);
         eventsListView.setAdapter(adapter);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        showPreviousMonthButton = (Button) findViewById(R.id.bLeft);
-        showNextMonthButton = (Button) findViewById(R.id.bRight);
 
         compactCalendarView = (CompactCalendarView) findViewById(R.id.compactcalendar_view);
-        // Set first day of week to Monday, defaults to Monday so calling setFirstDayOfWeek is not necessary
-        // Use constants provided by Java Calendar class
         compactCalendarView.setFirstDayOfWeek(Calendar.MONDAY);
 
         toolbar.setTitle(dateFormatForMonth.format(compactCalendarView.getFirstDayOfCurrentMonth()));
@@ -112,20 +111,16 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Menu behaviour
+     * Opens activity add event
      * @param item
      * @return
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_add) {
             Intent intent = new Intent(this, AddEventActivity.class);
-            //startActivity(intent);
             startActivityForResult(intent, REQUEST_CODE_GET_EVENT);
             return true;
         }
