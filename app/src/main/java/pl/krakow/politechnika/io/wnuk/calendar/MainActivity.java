@@ -148,15 +148,17 @@ public class MainActivity extends AppCompatActivity {
                     assert data != null;
                     String title = data.getStringExtra("title");
                     String date = data.getStringExtra("date");
-                    addEvent(title, date);
+                    String color = data.getStringExtra("color");
+                    addEvent(title, date, color);
                 } else{
                     Log.i("My app", "Activity canceled");
                 }
         }
     }
 
-    public void addEvent(String title, String sDate){
+    public void addEvent(String title, String sDate, String colorString){
         String myDate = sDate + " 10:00:00";
+        int color = stringToColor(colorString);
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = null;
@@ -167,7 +169,26 @@ public class MainActivity extends AppCompatActivity {
         }
         long millis = date.getTime();
 
-        Event ev1 = new Event(Color.RED, millis, title +" at: " + sDate);
+
+        Event ev1 = new Event(color, millis, title +" at: " + sDate);
         compactCalendarView.addEvent(ev1);
+    }
+
+    public int stringToColor(String color){
+        switch (color){
+            case "GRAY":
+                return Color.GRAY;
+            case "YELLOW":
+                return Color.YELLOW;
+            case "BLUE":
+                return Color.BLUE;
+            case "BLACK":
+                return Color.BLACK;
+            case "RED":
+                return Color.RED;
+            case "WHITE":
+                return Color.WHITE;
+        }
+        return Color.WHITE;
     }
 }

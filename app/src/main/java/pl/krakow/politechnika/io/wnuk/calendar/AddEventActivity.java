@@ -10,9 +10,12 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.Calendar;
@@ -28,6 +31,8 @@ public class AddEventActivity extends AppCompatActivity {
     private EditText titleInput;
     private Button submitButton;
     private boolean created = false;
+    private Spinner colorSpinner;
+    private String color;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +51,23 @@ public class AddEventActivity extends AppCompatActivity {
 
         titleInput = (EditText) findViewById(R.id.etTitle);
         submitButton = (Button) findViewById(R.id.bSubmit);
+        colorSpinner = (Spinner) findViewById(R.id.sColor);
 
+        final ArrayAdapter<String> sprinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.colors));
+        sprinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        colorSpinner.setAdapter(sprinnerAdapter);
+
+        colorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                color = adapterView.getItemAtPosition(i).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         /**
          * Return data from activity
@@ -61,6 +82,7 @@ public class AddEventActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.putExtra("title", title);
                 intent.putExtra("date", date);
+                intent.putExtra("color", color);
                 setResult(Activity.RESULT_OK, intent);
                 finish();
             }
