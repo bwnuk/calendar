@@ -44,21 +44,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final List<String> mutableEvents = new ArrayList<>();
+        showPreviousMonthButton = (Button) findViewById(R.id.bLeft);
+        showNextMonthButton = (Button) findViewById(R.id.bRight);
         eventsListView = (ListView) findViewById(R.id.lvEvents);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        final List<String> mutableEvents = new ArrayList<>();
         final ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mutableEvents);
         eventsListView.setAdapter(adapter);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        showPreviousMonthButton = (Button) findViewById(R.id.bLeft);
-        showNextMonthButton = (Button) findViewById(R.id.bRight);
 
         compactCalendarView = (CompactCalendarView) findViewById(R.id.compactcalendar_view);
-        // Set first day of week to Monday, defaults to Monday so calling setFirstDayOfWeek is not necessary
-        // Use constants provided by Java Calendar class
         compactCalendarView.setFirstDayOfWeek(Calendar.MONDAY);
 
         toolbar.setTitle(dateFormatForMonth.format(compactCalendarView.getFirstDayOfCurrentMonth()));
@@ -112,20 +111,16 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Menu behaviour
+     * Opens activity add event
      * @param item
      * @return
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_add) {
             Intent intent = new Intent(this, AddEventActivity.class);
-            //startActivity(intent);
             startActivityForResult(intent, REQUEST_CODE_GET_EVENT);
             return true;
         }
@@ -148,15 +143,17 @@ public class MainActivity extends AppCompatActivity {
                     assert data != null;
                     String title = data.getStringExtra("title");
                     String date = data.getStringExtra("date");
-                    addEvent(title, date);
+                    String color = data.getStringExtra("color");
+                    addEvent(title, date, color);
                 } else{
                     Log.i("My app", "Activity canceled");
                 }
         }
     }
 
-    public void addEvent(String title, String sDate){
+    public void addEvent(String title, String sDate, String colorString){
         String myDate = sDate + " 10:00:00";
+        int color = stringToColor(colorString);
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = null;
@@ -167,7 +164,26 @@ public class MainActivity extends AppCompatActivity {
         }
         long millis = date.getTime();
 
-        Event ev1 = new Event(Color.RED, millis, title +" at: " + sDate);
+
+        Event ev1 = new Event(color, millis, title +" at: " + sDate);
         compactCalendarView.addEvent(ev1);
+    }
+
+    public int stringToColor(String color){
+        switch (color){
+            case "GRAY":
+                return Color.GRAY;
+            case "YELLOW":
+                return Color.YELLOW;
+            case "BLUE":
+                return Color.BLUE;
+            case "BLACK":
+                return Color.BLACK;
+            case "RED":
+                return Color.RED;
+            case "WHITE":
+                return Color.WHITE;
+        }
+        return Color.WHITE;
     }
 }

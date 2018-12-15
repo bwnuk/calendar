@@ -10,11 +10,16 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class AddEventActivity extends AppCompatActivity {
@@ -28,6 +33,10 @@ public class AddEventActivity extends AppCompatActivity {
     private EditText titleInput;
     private Button submitButton;
     private boolean created = false;
+    private Spinner colorSpinner;
+    private String color;
+    private ArrayList<ColorItem> colorList;
+    private ColorAdapter colorAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +55,58 @@ public class AddEventActivity extends AppCompatActivity {
 
         titleInput = (EditText) findViewById(R.id.etTitle);
         submitButton = (Button) findViewById(R.id.bSubmit);
+        colorSpinner = (Spinner) findViewById(R.id.sColor);
 
+        initList();
+        colorAdapter = new ColorAdapter(this, colorList);
+        colorSpinner.setAdapter(colorAdapter);
+        /*
+        ArrayAdapter sprinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.colors)) {
+            public View getView(int position, View convertView, ViewGroup parent) {
+                // Cast the spinner collapsed item (non-popup item) as a text view
+                TextView tv = (TextView) super.getView(position, convertView, parent);
+
+                switch (tv.getText().toString()){
+                    case "GRAY":
+                        tv.setHighlightColor(Color.WHITE);
+                        break;
+                    case "YELLOW":
+                        tv.setTextColor(Color.YELLOW);
+                        break;
+                    case "BLUE":
+                        tv.setHighlightColor(Color.BLUE);
+                        break;
+                    case "BLACK":
+                        tv.setHighlightColor(Color.BLACK);
+                        break;
+                    case "RED":
+                        tv.setHighlightColor(Color.RED);
+                        break;
+                    case "WHITE":
+                        tv.setHighlightColor(Color.WHITE);
+                        break;
+                }
+                // Return the view
+                return tv;
+            }
+        };
+
+        sprinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        colorSpinner.setAdapter(sprinnerAdapter);
+        */
+        // Initialize an array adapte
+
+        colorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                color = ((ColorItem)adapterView.getItemAtPosition(i)).getColorName();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                color = "WHITE";
+            }
+        });
 
         /**
          * Return data from activity
@@ -61,6 +121,7 @@ public class AddEventActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.putExtra("title", title);
                 intent.putExtra("date", date);
+                intent.putExtra("color", color);
                 setResult(Activity.RESULT_OK, intent);
                 finish();
             }
@@ -97,6 +158,16 @@ public class AddEventActivity extends AppCompatActivity {
                 mDisplayDate.setText(dateTextView);
             }
         };
+    }
+
+    public void initList(){
+        colorList = new ArrayList<>();
+        colorList.add(new ColorItem("WHITE", R.drawable.white));
+        colorList.add(new ColorItem("RED", R.drawable.red));
+        colorList.add(new ColorItem("BLACK", R.drawable.black));
+        colorList.add(new ColorItem("BLUE", R.drawable.blue));
+        colorList.add(new ColorItem("YELLOW", R.drawable.yellow));
+        colorList.add(new ColorItem("GRAY", R.drawable.gray));
     }
 
 }
