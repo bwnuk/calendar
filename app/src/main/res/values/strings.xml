@@ -12,8 +12,8 @@
     <string name="button_right">SCROLL RIGHT</string>
 
     <string-array name="colors">
-        <item>RED</item>
         <item>WHITE</item>
+        <item>RED</item>
         <item>BLACK</item>
         <item>BLUE</item>
         <item>GRAY</item>

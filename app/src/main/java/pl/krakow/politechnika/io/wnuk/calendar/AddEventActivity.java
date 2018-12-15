@@ -65,7 +65,7 @@ public class AddEventActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
+                color = "WHITE";
             }
         });
 
