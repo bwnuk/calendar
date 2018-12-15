@@ -60,41 +60,6 @@ public class AddEventActivity extends AppCompatActivity {
         initList();
         colorAdapter = new ColorAdapter(this, colorList);
         colorSpinner.setAdapter(colorAdapter);
-        /*
-        ArrayAdapter sprinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.colors)) {
-            public View getView(int position, View convertView, ViewGroup parent) {
-                // Cast the spinner collapsed item (non-popup item) as a text view
-                TextView tv = (TextView) super.getView(position, convertView, parent);
-
-                switch (tv.getText().toString()){
-                    case "GRAY":
-                        tv.setHighlightColor(Color.WHITE);
-                        break;
-                    case "YELLOW":
-                        tv.setTextColor(Color.YELLOW);
-                        break;
-                    case "BLUE":
-                        tv.setHighlightColor(Color.BLUE);
-                        break;
-                    case "BLACK":
-                        tv.setHighlightColor(Color.BLACK);
-                        break;
-                    case "RED":
-                        tv.setHighlightColor(Color.RED);
-                        break;
-                    case "WHITE":
-                        tv.setHighlightColor(Color.WHITE);
-                        break;
-                }
-                // Return the view
-                return tv;
-            }
-        };
-
-        sprinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        colorSpinner.setAdapter(sprinnerAdapter);
-        */
-        // Initialize an array adapte
 
         colorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -169,5 +134,4 @@ public class AddEventActivity extends AppCompatActivity {
         colorList.add(new ColorItem("YELLOW", R.drawable.yellow));
         colorList.add(new ColorItem("GRAY", R.drawable.gray));
     }
-
 }
