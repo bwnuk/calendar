@@ -15,6 +15,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -32,7 +33,6 @@ public class AddEventActivity extends AppCompatActivity {
     private String dateTextView;
     private EditText titleInput;
     private Button submitButton;
-    private boolean created = false;
     private Spinner colorSpinner;
     private String color;
     private ArrayList<ColorItem> colorList;
@@ -87,11 +87,20 @@ public class AddEventActivity extends AppCompatActivity {
 
                 //Pass data back
                 Intent intent = new Intent();
-                intent.putExtra("title", title);
-                intent.putExtra("date", date);
-                intent.putExtra("color", color);
-                setResult(Activity.RESULT_OK, intent);
-                finish();
+                if(title != null || date != null ){
+                    if(title != null)
+                    {
+                        Toast.makeText(getApplicationContext(), "You need to input title!", Toast.LENGTH_LONG).show();
+                    }else {
+                        Toast.makeText(getApplicationContext(), "You need to input date!", Toast.LENGTH_LONG).show();
+                    }
+                }else {
+                    intent.putExtra("title", title);
+                    intent.putExtra("date", date);
+                    intent.putExtra("color", color);
+                    setResult(Activity.RESULT_OK, intent);
+                    finish();
+                }
             }
         });
 
