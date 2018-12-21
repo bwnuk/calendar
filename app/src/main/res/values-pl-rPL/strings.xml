@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Calendar</string>
+    <string name="welcome">Twój Kalendarz</string>
+    <string name="menu_add">Dodaj</string>
+    <string name="add_activity">Dodawanie wydarzenia</string>
+    <string name="pick_date">Wybierz date</string>
+    <string name="date_event">Data wydarzenia:</string>
+    <string name="title_event">Tytuł wydarzenia</string>
+    <string name="submit">DODAJ</string>
+    <string name="title">Tytuł</string>
+    <string name="button_left">W LEWO</string>
+    <string name="button_right">W PRAWO</string>
+    <string name="error_title">Musisz wprowadzić tytuł!</string>
+    <string name="error_date">Musisz wprowadzić date!</string>
+</resources>

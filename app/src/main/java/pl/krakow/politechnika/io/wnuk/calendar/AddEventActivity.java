@@ -90,9 +90,9 @@ public class AddEventActivity extends AppCompatActivity {
                 if(title != null || date != null ){
                     if(title != null)
                     {
-                        Toast.makeText(getApplicationContext(), "You need to input title!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), getResources().getText(R.string.error_title), Toast.LENGTH_LONG).show();
                     }else {
-                        Toast.makeText(getApplicationContext(), "You need to input date!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), getResources().getText(R.string.error_date), Toast.LENGTH_LONG).show();
                     }
                 }else {
                     intent.putExtra("title", title);

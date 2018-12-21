@@ -10,4 +10,6 @@
     <string name="title">Title</string>
     <string name="button_left">SCROLL LEFT</string>
     <string name="button_right">SCROLL RIGHT</string>
+    <string name="error_title">You need to input title!</string>
+    <string name="error_date">You need to input date!</string>
 </resources>
