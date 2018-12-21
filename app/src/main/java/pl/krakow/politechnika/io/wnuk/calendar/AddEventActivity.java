@@ -61,6 +61,9 @@ public class AddEventActivity extends AppCompatActivity {
         colorAdapter = new ColorAdapter(this, colorList);
         colorSpinner.setAdapter(colorAdapter);
 
+        /**
+         * Color picker setup
+         */
         colorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {

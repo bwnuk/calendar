@@ -30,8 +30,6 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
-    private ActionBar toolbar2;
-    private Calendar currentCalender = Calendar.getInstance(Locale.getDefault());
     private SimpleDateFormat dateFormatForMonth = new SimpleDateFormat("MMM - yyyy", Locale.getDefault());
     private static final int REQUEST_CODE_GET_EVENT = 1014;
     private CompactCalendarView compactCalendarView;
@@ -48,21 +46,22 @@ public class MainActivity extends AppCompatActivity {
         showNextMonthButton = (Button) findViewById(R.id.bRight);
         eventsListView = (ListView) findViewById(R.id.lvEvents);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        compactCalendarView = (CompactCalendarView) findViewById(R.id.compactcalendar_view);
 
         final ArrayList<Event> mutableEvents = new ArrayList<>();
-        //final ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mutableEvents);
         final ArrayAdapter adapter = new EventsAdapter(this, mutableEvents);
+
         eventsListView.setAdapter(adapter);
+
+        compactCalendarView.setFirstDayOfWeek(Calendar.MONDAY);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-
-        compactCalendarView = (CompactCalendarView) findViewById(R.id.compactcalendar_view);
-        compactCalendarView.setFirstDayOfWeek(Calendar.MONDAY);
-
         toolbar.setTitle(dateFormatForMonth.format(compactCalendarView.getFirstDayOfCurrentMonth()));
 
+        /**
+         * Calendar setup
+         */
         compactCalendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
             public void onDayClick(Date dateClicked) {
@@ -82,8 +81,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /*
-        Button to scroll to next or previous month
+        /**
+         * Button to scroll to next or previous month
          */
         showNextMonthButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,8 +99,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /*
-    Menu
+    /**
+     *
+     * @param menu
+     * @return
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -152,6 +153,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    /**
+     * Adding events
+     * @param title
+     * @param sDate
+     * @param colorString
+     */
     public void addEvent(String title, String sDate, String colorString){
         String myDate = sDate + " 10:00:00";
         int color = stringToColor(colorString);

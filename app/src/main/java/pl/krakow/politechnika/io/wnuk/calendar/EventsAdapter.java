@@ -17,12 +17,20 @@ import com.github.sundeepk.compactcalendarview.domain.Event;
 import java.util.ArrayList;
 
 public class EventsAdapter extends ArrayAdapter<Event> {
-
     private ArrayList<Event> eventsList;
+
     public EventsAdapter(@NonNull Context context, ArrayList<Event> eventsList) {
         super(context, R.layout.events_list_row, eventsList);
         this.eventsList = eventsList;
     }
+
+    /**
+     * List of events adapter
+     * @param position
+     * @param convertView
+     * @param parent
+     * @return
+     */
 
     @NonNull
     @Override
