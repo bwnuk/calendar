@@ -17,7 +17,6 @@ import pl.krakow.politechnika.io.wnuk.calendar.R;
 public class ColorAdapter extends ArrayAdapter {
     public ColorAdapter(Context context, ArrayList<ColorItem> colorList){
         super(context, 0, colorList);
-
     }
 
     @NonNull
