@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         compactCalendarView = (CompactCalendarView) findViewById(R.id.compactcalendar_view);
 
         final ArrayList<Event> mutableEvents = new ArrayList<>();
-        final ArrayAdapter adapter = new EventsAdapter(this, mutableEvents);
+        final ArrayAdapter adapter = new EventsAdapter(this, mutableEvents, compactCalendarView);
 
         eventsListView.setAdapter(adapter);
 
@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
                     for (Event booking : eventsList) {
                         mutableEvents.add(booking);
                     }
+                    ((EventsAdapter) adapter).setEventsList(mutableEvents);
                     adapter.notifyDataSetChanged();
                 }
             }
@@ -130,11 +131,12 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //TODO poprawić odswiezanie sie listy po usuwaniu wydarzenia
     /**
      * Get message from intent
      * @param requestCode sent code to intent
      * @param resultCode sent code from intent
-     * @param data da
+     * @param data
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -152,7 +154,6 @@ public class MainActivity extends AppCompatActivity {
                 }
         }
     }
-
 
     /**
      * Adding events

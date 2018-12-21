@@ -16,7 +16,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -87,8 +86,8 @@ public class AddEventActivity extends AppCompatActivity {
 
                 //Pass data back
                 Intent intent = new Intent();
-                if(title != null || date != null ){
-                    if(title != null)
+                if(title.isEmpty() || date == null ){
+                    if(title.isEmpty())
                     {
                         Toast.makeText(getApplicationContext(), getResources().getText(R.string.error_title), Toast.LENGTH_LONG).show();
                     }else {
@@ -122,7 +121,6 @@ public class AddEventActivity extends AppCompatActivity {
                         year, month, day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
-                //if()
             }
         });
 
@@ -137,6 +135,10 @@ public class AddEventActivity extends AppCompatActivity {
         };
     }
 
+    /**
+     * String to Color in Integeer
+     * initialization list of colors
+     */
     public void initList(){
         colorList = new ArrayList<>();
         colorList.add(new ColorItem("WHITE", R.drawable.white));
