@@ -29,7 +29,7 @@ public class AddEventActivity extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     private String title;
     private String date;
-    private String dateTextView;
+    private String dateText;
     private EditText titleInput;
     private Button submitButton;
     private Spinner colorSpinner;
@@ -129,8 +129,8 @@ public class AddEventActivity extends AppCompatActivity {
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month += 1;
                 date = year + "/" + month + "/" + day;
-                dateTextView = day + "." + month + "." + year;
-                mDisplayDate.setText(dateTextView);
+                dateText= day + "." + month + "." + year;
+                mDisplayDate.setText(dateText);
             }
         };
     }
@@ -139,7 +139,7 @@ public class AddEventActivity extends AppCompatActivity {
      * String to Color in Integeer
      * initialization list of colors
      */
-    public void initList(){
+    private void initList(){
         colorList = new ArrayList<>();
         colorList.add(new ColorItem("WHITE", R.drawable.white));
         colorList.add(new ColorItem("RED", R.drawable.red));

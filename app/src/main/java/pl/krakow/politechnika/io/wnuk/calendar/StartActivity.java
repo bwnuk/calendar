@@ -8,17 +8,11 @@ import android.widget.TextView;
 
 public class StartActivity extends AppCompatActivity {
 
-    private TextView tv_welcome;
-    private ImageView iv_icon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-
-        tv_welcome = (TextView) findViewById(R.id.tv_welcome);
-        iv_icon = (ImageView) findViewById(R.id.iv_icon_earth);
-
 
         /**
          * Start activity opening and timing
