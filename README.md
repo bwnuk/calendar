@@ -7,3 +7,6 @@ Android calendar app made for class at university. Simple app to add events to c
 - Android 6.0 (Marshmallow)
 ## Library: 
 - [**Compact calendar view**](https://github.com/SundeepK/CompactCalendarView)
+## Diagrams
+- [**UML Class diagram**](https://www.lucidchart.com/invitations/accept/01aa08e4-1f4d-4191-bc8f-20c4dbfc368d)
+- [**Sequence diagram**](https://www.lucidchart.com/invitations/accept/32d7efd4-8875-4996-b8e8-dd323a8571b6)
