@@ -22,20 +22,20 @@ import java.util.Calendar;
 import pl.krakow.politechnika.io.wnuk.calendar.color.ColorAdapter;
 import pl.krakow.politechnika.io.wnuk.calendar.color.ColorItem;
 
-public class AddEventActivity extends AppCompatActivity {
+    public class AddEventActivity extends AppCompatActivity {
 
-    private static final String TAG = "AddEventActivity";
-    private TextView mDisplayDate;
-    private DatePickerDialog.OnDateSetListener mDateSetListener;
-    private String title;
-    private String date;
-    private String dateText;
-    private EditText titleInput;
-    private Button submitButton;
-    private Spinner colorSpinner;
-    private String color;
-    private ArrayList<ColorItem> colorList;
-    private ColorAdapter colorAdapter;
+        private static final String TAG = "AddEventActivity";
+        private TextView mDisplayDate;
+        private DatePickerDialog.OnDateSetListener mDateSetListener;
+        private String title;
+        private String date;
+        private String dateText;
+        private EditText titleInput;
+        private Button submitButton;
+        private Spinner colorSpinner;
+        private String color;
+        private ArrayList<ColorItem> colorList;
+        private ColorAdapter colorAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

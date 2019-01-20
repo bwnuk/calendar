@@ -2,10 +2,18 @@ package pl.krakow.politechnika.io.wnuk.calendar;
 
 import android.content.Intent;
 
+import com.github.sundeepk.compactcalendarview.CompactCalendarView;
+
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
-import java.util.concurrent.TimeoutException;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import pl.krakow.politechnika.io.wnuk.calendar.color.ColorItem;
 
@@ -17,6 +25,7 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class UnitTest {
+
 
     @Test
     public void testColorItemFlagNumber(){
@@ -48,7 +57,4 @@ public class UnitTest {
         assertEquals("", colorItem.getColorName());
     }
 
-    @Test
-    public void testAddEventActivityPassing(){
-    }
 }
